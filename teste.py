@@ -42,6 +42,6 @@ while not exit:
 	if pressed[pygame.K_SPACE]:
 		color=blue
 	screen.fill((255,255,255))	
-	pygame.draw.rect(screen,color,pygame.Rect(x,y,60,60))
+	pygame.draw.circle(screen,color,(x,y),50,0)
 	pygame.display.flip()					
 	clock.tick(60)
