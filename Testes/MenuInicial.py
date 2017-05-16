@@ -29,8 +29,6 @@ def MenuInicial():
 
 	while not crashed:
 		for event in pygame.event.get():
-			print(event)
-			print(marcacao)
 			if event.type==pygame.QUIT:
 				crashed=True
 			if event.type==pygame.KEYDOWN:
@@ -41,9 +39,8 @@ def MenuInicial():
 				elif event.key == pygame.K_UP:
 					imagemAtual=Menu(menu_Img,iniciar_img_selecionada,sair_img)
 					marcacao=2
-
 				if marcacao==2 and event.key==pygame.K_RETURN:
-					import Main
+					return
 				elif marcacao==1 and event.key==pygame.K_RETURN:
 					crashed=True
 

@@ -4,7 +4,8 @@ import numpy as np
 import time
 from mapa import criar_mapa
 from bloco import blocos
-
+from MenuInicial import MenuInicial
+MenuInicial()
 pygame.init()
 
 #Tela
