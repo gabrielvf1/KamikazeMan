@@ -1,5 +1,6 @@
 import pygame
 
+marcacao=2
 pygame.init()
 
 black=(0,0,0)
@@ -28,15 +29,23 @@ imagemAtual=Menu(menu_Img,iniciar_img_selecionada,sair_img)
 
 while not crashed:
 	for event in pygame.event.get():
+		print(event)
+		print(marcacao)
 		if event.type==pygame.QUIT:
 			crashed=True
-		imagemAtual
 		if event.type==pygame.KEYDOWN:
+
 			if event.key == pygame.K_DOWN:
 				imagemAtual=Menu(menu_Img,iniciar_img,sair_img_selecionada)
+				marcacao=1
 			elif event.key == pygame.K_UP:
 				imagemAtual=Menu(menu_Img,iniciar_img_selecionada,sair_img)
+				marcacao=2
 
+			if marcacao==2 and event.key==pygame.K_LEFT:
+				import Main
+			elif marcacao==1 and event.key==pygame.K_LEFT:
+				crashed=True
 
 
 	pygame.display.update()
