@@ -3,7 +3,7 @@ pygame.init()
 
 display_width=800
 display_height=600
-PersonagensDisplay = pygame.display.set_mode((display_width,display_height))
+gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption('Bomberman_Personagens')
 clock = pygame.time.Clock()
 crashed = False
@@ -19,15 +19,73 @@ Img_personagem4=pygame.image.load('Imagens\MenuPersonagens\Vini.png')
 Img_personagem4_selecionado=pygame.image.load('Imagens\MenuPersonagens\Vini_Selecionado.png')
 Img_Inciar_jogo=pygame.image.load('Imagens\MenuPersonagens\Iniciar_jogo.png')
 Img_Voltar=pygame.image.load('Imagens\MenuPersonagens\Voltar.png')
+Img_Voltar_selecionada=pygame.image.load('Imagens\MenuPersonagens\Voltar_selecionada.png')
+Img_Inciar_jogo_selecionada=pygame.image.load('Imagens\MenuPersonagens\Iniciar_jogo_selecionada.png')
 
 
 def Menu_Personagens(Imagem_Estatica,Personagem1,Personagem2,Personagem3,Personagem4,Iniciar_Jogo,Voltar):
-	PersonagensDisplay.blit(Imagem_Estatica(0,0))
-	PersonagensDisplay.blit(Personagem1(100,100))
-	PersonagensDisplay.blit(Personagem2(300,100))
-	PersonagensDisplay.blit(Personagem3(500,100))
-	PersonagensDisplay.blit(Personagem4(700,100))
-	PersonagensDisplay.blit(Iniciar_Jogo(100,400))
-	PersonagensDisplay.blit(Voltar(100,500))
+	gameDisplay.blit(Imagem_Estatica,(0,0))
+	gameDisplay.blit(pygame.transform.scale(Personagem1,(175,220)),(12.5,65))
+	gameDisplay.blit(pygame.transform.scale(Personagem2,(175,220)),(212.5,65))
+	gameDisplay.blit(pygame.transform.scale(Personagem3,(175,220)),(412.5,65))
+	gameDisplay.blit(pygame.transform.scale(Personagem4,(175,220)),(612.5,65))
+	gameDisplay.blit(Iniciar_Jogo,(100,400))
+	gameDisplay.blit(Voltar,(100,500))
 
-Imagem_Inicial=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4)
+marcacao_cima_baixo=1
+marcacao=1
+marcacao_transicao=1
+Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+
+while not crashed:
+	for event in pygame.event.get():
+		if event.type==pygame.QUIT:
+			crashed=True
+		if event.type==pygame.KEYDOWN:
+
+			if marcacao==1  and event.key == pygame.K_RIGHT:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				marcacao=2
+				marcacao_cima_baixo=1
+
+			elif marcacao==2 and event.key==pygame.K_RIGHT:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				marcacao=3
+				marcacao_cima_baixo=1
+			elif marcacao==3 and event.key==pygame.K_RIGHT:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4_selecionado,Img_Inciar_jogo,Img_Voltar)
+				marcacao=4
+				marcacao_cima_baixo=1
+			if marcacao==2 and event.key == pygame.K_LEFT:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				marcacao=1
+				marcacao_cima_baixo=1
+			elif marcacao==3 and event.key == pygame.K_LEFT:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				marcacao=2
+				marcacao_cima_baixo=1
+			elif marcacao==4 and event.key == pygame.K_LEFT:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				marcacao=3
+				marcacao_cima_baixo=1
+			if marcacao_cima_baixo == 1 and event.key == pygame.K_DOWN:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo_selecionada,Img_Voltar)
+				marcacao_cima_baixo=2
+				marcacao=1
+			elif marcacao_cima_baixo == 2 and event.key == pygame.K_DOWN:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar_selecionada)
+				marcacao_cima_baixo=1
+			if marcacao_cima_baixo == 1 and event.key == pygame.K_UP:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo_selecionada,Img_Voltar)
+				marcacao_cima_baixo=2
+			elif marcacao_cima_baixo==2 and event.key==pygame.K_UP:
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+
+
+
+
+
+	pygame.display.update()
+	clock.tick(60)
+pygame.quit()
+quit()	
