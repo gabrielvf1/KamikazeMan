@@ -47,7 +47,6 @@ while not crashed:
 				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
 				marcacao=2
 				marcacao_cima_baixo=1
-
 			elif marcacao==2 and event.key==pygame.K_RIGHT:
 				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
 				marcacao=3
