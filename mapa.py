@@ -9,7 +9,7 @@ class mapa:
 		self.height=height
 		self.screen=screen
 	
-	def draw_map(superior,inferior,esquerda,direita):
+	def draw_map(superior,inferior,esquerda,direita,meio):
 		for bloco in superior:
 			bloco.draw()
 
@@ -20,4 +20,7 @@ class mapa:
 			bloco.draw()
 
 		for bloco in direita:
+			bloco.draw()
+
+		for bloco in meio:
 			bloco.draw()

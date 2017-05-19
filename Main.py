@@ -3,8 +3,9 @@ from bomber import bomber
 import numpy as np
 import time
 from mapa import mapa
-from bloco import blocos
+from bloco import *
 from MenuInicial import MenuInicial
+from ClasseBomba import Bomba
 
 MenuInicial()
 pygame.init()
@@ -15,7 +16,7 @@ height=650
 screen=pygame.display.set_mode((width,height))
 pygame.display.set_caption("KamikazeMan")
 #players
-bomber=bomber(40,50,'bomberman 1.png',screen,mapa)
+bomber=bomber(50,50,'bomberman 1.png',screen,mapa)
 
 #blocos superior
 bloco1=blocos(0,0,'bloco_centro.png',screen)
@@ -77,13 +78,34 @@ bloco50=blocos(700,450,'bloco_centro.png',screen)
 bloco51=blocos(700,500,'bloco_centro.png',screen)
 bloco52=blocos(700,550,'bloco_centro.png',screen)
 
-#lista bloco
+#blocos meio
+bloco53=blocos(100,100,'bloco_centro.png',screen)
+bloco54=blocos(200,100,'bloco_centro.png',screen)
+bloco55=blocos(300,100,'bloco_centro.png',screen)
+bloco56=blocos(400,100,'bloco_centro.png',screen)
+bloco57=blocos(500,100,'bloco_centro.png',screen)
+
+bloco58=blocos(100,200,'bloco_centro.png',screen)
+bloco59=blocos(200,200,'bloco_centro.png',screen)
+bloco60=blocos(300,200,'bloco_centro.png',screen)
+bloco61=blocos(400,200,'bloco_centro.png',screen)
+bloco62=blocos(500,200,'bloco_centro.png',screen)
+# bloco63=blocos(700,550,'bloco_centro.png',screen)
+# bloco64=blocos(700,550,'bloco_centro.png',screen)
+# bloco65=blocos(700,550,'bloco_centro.png',screen)
+# bloco66=blocos(700,550,'bloco_centro.png',screen)
+# bloco67=blocos(700,550,'bloco_centro.png',screen)
+# bloco68=blocos(700,550,'bloco_centro.png',screen)
+# bloco69=blocos(700,550,'bloco_centro.png',screen)
+# bloco70=blocos(700,550,'bloco_centro.png',screen)
+# bloco71=blocos(700,550,'bloco_centro.png',screen)
+
 
 lista_blocos_superior=[bloco1,bloco2,bloco3,bloco4,bloco5,bloco6,bloco7,bloco8,bloco9,bloco10,bloco11,bloco12,bloco13,bloco14]
 lista_blocos_inferiores=[bloco27,bloco28,bloco29,bloco30,bloco31,bloco32,bloco33,bloco34,bloco35,bloco36,bloco37,bloco38,bloco39,bloco40]
 lista_blocos_esquerda=[bloco15,bloco16,bloco17,bloco18,bloco19,bloco20,bloco21,bloco22,bloco23,bloco24,bloco25,bloco25,bloco26]
 lista_blocos_direita=[bloco41,bloco42,bloco43,bloco44,bloco45,bloco46,bloco47,bloco48,bloco49,bloco50,bloco51,bloco52]
-
+lista_blocos_meio=[bloco53,bloco54,bloco55,bloco56,bloco57,bloco58,bloco59,bloco60,bloco61,bloco62]#,bloco63,bloco64,bloco65,bloco66,bloco67,bloco68,bloco69,bloco70,bloco71,bloco27]
 #Cores
 black=(0,0,0)
 white=(255,255,255)
@@ -100,24 +122,26 @@ gameExit=False
 
 clock=pygame.time.Clock()
 
+bombs=[]
+momento = 0
 
 while not gameExit:
 	for event in pygame.event.get():
 		if event.type==pygame.QUIT:
 			gameExit=True
+	if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+		clock.tick(5)
+		bombs.append(Bomba(momento,bomber,screen))
+	for bomb in bombs:
+		bomb.drawbomba()
+		bomb.update(momento,bomber,bombs)
 
 	bomber.movimentacao()
-	for i in lista_blocos_superior:
-		i.colisao(bomber)
-	for i in lista_blocos_inferiores:
-		i.colisao(bomber)
-	for i in lista_blocos_esquerda:
-		i.colisao(bomber)
-	for i in lista_blocos_direita:
-		i.colisao(bomber)
-
-	mapa.draw_map(lista_blocos_superior, lista_blocos_inferiores, lista_blocos_esquerda, lista_blocos_direita)
-	print(bomber.rect)
+	print(bloco43.rect) 
+	bloco43.colisao(bomber)
+	pygame.draw.rect(screen,red,(650,100,51,51))
+	mapa.draw_map(lista_blocos_superior, lista_blocos_inferiores, lista_blocos_esquerda, lista_blocos_direita,lista_blocos_meio)
+	momento+=1
 
 	bomber.draw()
 	pygame.display.flip()

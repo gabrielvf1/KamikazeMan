@@ -1,3 +1,4 @@
+import pygame
 pygame.init()
 
 display_width=800

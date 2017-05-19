@@ -8,7 +8,7 @@ class blocos:
 		self.height=self.img.get_height()
 		self.posx=posx
 		self.posy=posy
-		self.rect=self.img.get_rect(topleft=(self.posx, self.posy))
+		self.rect=self.img.get_rect(x=posx,y=posy)
 
 	def colisao(self,player):
 		col= self.rect.colliderect(player.rect)
@@ -28,5 +28,5 @@ class blocos:
 
 
 	def draw(self):
-		self.screen.blit(pygame.transform.scale(self.img,(51,51)),(self.posx,self.posy))
+		self.screen.blit((pygame.transform.scale(self.img,(51,51))),(self.posx,self.posy))
 

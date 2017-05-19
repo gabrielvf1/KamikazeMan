@@ -10,12 +10,11 @@ class bomber:
 		self.screen=screen
 		self.img=pygame.image.load(img)
 		self.mapa=mapa
-		self.rect=self.img.get_rect(topleft=(self.x, self.y))
+		self.rect=self.img.get_rect(topleft=(self.x, self.y),width=68, height=62)
 
 
 	def movimentacao(self):
-		pressed=pygame.key.get_pressed()
-		
+		pressed=pygame.key.get_pressed()	
 		if pressed[pygame.K_w]:
 			self.dy=-3
 			self.y=self.y+self.dy
@@ -28,9 +27,9 @@ class bomber:
 		elif pressed[pygame.K_a]:
 			self.dx=-3
 			self.x=self.x+self.dx
-		self.rect=self.img.get_rect(topleft=(self.x, self.y))
+		self.rect=self.img.get_rect(topleft=(self.x, self.y),width=68, height=62)
 
 	def draw(self):
-		self.screen.blit(pygame.transform.scale(self.img,(70,64)),(self.x,self.y))
+		self.screen.blit(pygame.transform.scale(self.img,(68,62)),(self.x,self.y))
 
 		

@@ -29,8 +29,6 @@ def MenuInicial():
 
 	while not crashed:
 		for event in pygame.event.get():
-			print(event)
-			print(marcacao)
 			if event.type==pygame.QUIT:
 				crashed=True
 			if event.type==pygame.KEYDOWN:
