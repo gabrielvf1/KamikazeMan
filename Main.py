@@ -6,6 +6,7 @@ from mapa import mapa
 from bloco import *
 from MenuInicial import MenuInicial
 from ClasseBomba import Bomba
+from bomber2 import bomber2#
 
 MenuInicial()
 pygame.init()
@@ -17,6 +18,7 @@ screen=pygame.display.set_mode((width,height))
 pygame.display.set_caption("KamikazeMan")
 #players
 bomber=bomber(50,50,'bomberman 1.png',screen,mapa)
+bomber2=bomber2(650,550,'bomberman 1.png',screen,mapa)####################
 
 #blocos superior
 bloco1=blocos(0,0,'bloco_centro.png',screen)
@@ -122,28 +124,50 @@ gameExit=False
 
 clock=pygame.time.Clock()
 
-bombs=[]
+delay1=0###
+delay2=0###
+bomba1dropada=False###
+bomba2dropada=False###
+bombs=[]###
+bombs2=[]###
 momento = 0
 
 while not gameExit:
 	for event in pygame.event.get():
 		if event.type==pygame.QUIT:
 			gameExit=True
-	if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-		clock.tick(5)
+#_______________________________________________________________________#
+#bombas bonber1
+	if bomba1dropada==False and event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:			
+		bomba1dropada=True
+		delay1=momento
 		bombs.append(Bomba(momento,bomber,screen))
 	for bomb in bombs:
 		bomb.drawbomba()
 		bomb.update(momento,bomber,bombs)
-
+#bombas bomber2
+	if bomba2dropada==False and event.type == pygame.KEYDOWN and event.key == pygame.K_KP0:			
+		bomba2dropada=True
+		delay2=momento
+		bombs2.append(Bomba(momento,bomber2,screen))
+	for bomb in bombs2:
+		bomb.drawbomba()
+		bomb.update(momento,bomber2,bombs2)
+	if momento==delay1+30:
+		bomba1dropada=False
+	if momento==delay2+30:
+		bomba2dropada=False
+#_________________________________________________________________________________________________#
 	bomber.movimentacao()
-	print(bloco43.rect) 
+	bomber2.movimentacao()
+	#print(bloco43.rect) 
 	bloco43.colisao(bomber)
 	pygame.draw.rect(screen,red,(650,100,51,51))
 	mapa.draw_map(lista_blocos_superior, lista_blocos_inferiores, lista_blocos_esquerda, lista_blocos_direita,lista_blocos_meio)
 	momento+=1
 
-	bomber.draw()
+	bomber2.draw()#
+	bomber.draw()#
 	pygame.display.flip()
 	clock.tick(60)
 	screen.fill(cinza)
