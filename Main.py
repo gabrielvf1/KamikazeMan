@@ -7,8 +7,10 @@ from bloco import *
 from MenuInicial import MenuInicial
 from ClasseBomba import Bomba
 from bomber2 import bomber2#
+from MenuPersonagens import MenuPersonagem
 
 MenuInicial()
+MenuPersonagem()
 pygame.init()
 
 #Tela
