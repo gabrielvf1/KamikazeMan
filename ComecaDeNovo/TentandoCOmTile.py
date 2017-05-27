@@ -18,6 +18,7 @@ class Game:
         pass
 
     def new(self):
+        self.players=pg.sprite.Group()
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.player1 = Player(self, 1, 1,img1)
@@ -43,6 +44,7 @@ class Game:
             self.dt = self.clock.tick(FPS) / 1000
             self.events()
             self.update()
+            print (self.all_sprites)
             self.draw()
 
     def quit(self):
