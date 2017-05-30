@@ -20,6 +20,7 @@ class Player(pg.sprite.Sprite):
         self.x = x
         self.y = y
 
+
     def move(self, dx=0, dy=0):
     	if not self.collide_with_walls(dx,dy):
         	self.x += dx
@@ -56,12 +57,15 @@ class Wall(pg.sprite.Sprite):
 
 class bomba(pg.sprite.Sprite):
         def __init__(self,game,x,y):
-            self.bomba_group=
-            pg.sprite.Sprite.__ini__(self,self.bomba_group)
+            self.bomba_group=game.bomba
+            pg.sprite.Sprite.__init__(self,self.bomba_group)
+            pg.sprtie.Sprite.__init__(self,game.all_sprites)
             self.game=game
-            self.image.pg.image.load(os.path.join(img_folder,"bomba.png")).convert()
-            self.rect=pg.get_rect()
+            self.image= pg.image.load(os.path.join(img_folder,"bomba.png")).convert()
+            self.rect=self.image.get_rect()
             self.x=x
             self.y=y
 
-        def explosao(self):
+        def draw(self,game,x,y):
+             self.screen.blit(self.bomba1.image,(self.player1.x,self.player1.y))
+                    # def explosao(self):

@@ -5,6 +5,7 @@ from sprites import *
 
 img1="Gabriel.png"
 img2="bomberman 1.png"
+# bombaimg="bomba.png"
 class Game:
     def __init__(self):
         pg.init()
@@ -21,8 +22,11 @@ class Game:
         self.players=pg.sprite.Group()
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
+        self.bomba=pg.sprite.Group()
         self.player1 = Player(self, 1, 1,img1)
         self.player2 = Player(self,5,5,img2)
+        self.bomba1=bomba(self,self.player1.x,self.player1.y)
+        self.bomba2=bomba(self,self.player2.x,self.player2.y)
         for x in range(1, 15):
             Wall(self, x, 0)
         for y in range (0,11):
@@ -44,7 +48,6 @@ class Game:
             self.dt = self.clock.tick(FPS) / 1000
             self.events()
             self.update()
-            print (self.all_sprites)
             self.draw()
 
     def quit(self):
@@ -64,6 +67,7 @@ class Game:
         self.screen.fill(BGCOLOR)
         self.draw_grid()
         self.all_sprites.draw(self.screen)
+        # self.bombas.draw(self.screen)
         pg.display.flip()
 
     def events(self):	 
@@ -89,6 +93,7 @@ class Game:
                 	self.player2.move(dy=-1)
                 if event.key == pg.K_s:
                 	self.player2.move(dy=1)
+                if event.key==pg.K_SPACE:
 
     def show_start_screen(self):
         pass
