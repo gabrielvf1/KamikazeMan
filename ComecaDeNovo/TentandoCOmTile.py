@@ -67,7 +67,7 @@ class Game:
         self.screen.fill(BGCOLOR)
         self.draw_grid()
         self.all_sprites.draw(self.screen)
-        # self.bombas.draw(self.screen)
+        self.bomba1.draw(self.player1.x,self.player1.y)
         pg.display.flip()
 
     def events(self):	 
@@ -93,7 +93,7 @@ class Game:
                 	self.player2.move(dy=-1)
                 if event.key == pg.K_s:
                 	self.player2.move(dy=1)
-                if event.key==pg.K_SPACE:
+                # if event.key==pg.K_SPACE:
 
     def show_start_screen(self):
         pass

@@ -33,7 +33,8 @@ class Player(pg.sprite.Sprite):
                 return True
         for player in self.player_group:
             if player.x== self.x + dx and player.y==self.y+dy:
-                return True       
+                return True
+        
         return False
 
 
@@ -59,13 +60,14 @@ class bomba(pg.sprite.Sprite):
         def __init__(self,game,x,y):
             self.bomba_group=game.bomba
             pg.sprite.Sprite.__init__(self,self.bomba_group)
-            pg.sprtie.Sprite.__init__(self,game.all_sprites)
             self.game=game
             self.image= pg.image.load(os.path.join(img_folder,"bomba.png")).convert()
             self.rect=self.image.get_rect()
             self.x=x
             self.y=y
 
-        def draw(self,game,x,y):
-             self.screen.blit(self.bomba1.image,(self.player1.x,self.player1.y))
+        def draw(self,x,y):
+            pressed=pg.key.get_pressed()
+            if pressed[pg.K_SPACE]:
+             self.game.screen.blit(self.image,(x*TILESIZE,y*TILESIZE))
                     # def explosao(self):
