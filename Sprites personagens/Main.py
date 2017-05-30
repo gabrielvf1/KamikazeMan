@@ -7,10 +7,8 @@ from bloco import *
 from MenuInicial import MenuInicial
 from ClasseBomba import Bomba
 from bomber2 import bomber2#
-from MenuPersonagens import MenuPersonagem
 
 MenuInicial()
-MenuPersonagem()
 pygame.init()
 
 #Tela
@@ -20,7 +18,7 @@ screen=pygame.display.set_mode((width,height))
 pygame.display.set_caption("KamikazeMan")
 #players
 bomber=bomber(50,50,'bomberman 1.png',screen,mapa)
-bomber2=bomber2(650,550,'bomberman 1.png',screen,mapa)####################
+bomber2=bomber2(650,550,'bomberman 1.png',screen,mapa)
 
 #blocos superior
 bloco1=blocos(0,0,'bloco_centro.png',screen)
@@ -126,12 +124,12 @@ gameExit=False
 
 clock=pygame.time.Clock()
 
-delay1=0###
-delay2=0###
-bomba1dropada=False###
-bomba2dropada=False###
-bombs=[]###
-bombs2=[]###
+delay1=0
+delay2=0
+bomba1dropada=False
+bomba2dropada=False
+bombs=[]
+bombs2=[]
 momento = 0
 
 while not gameExit:

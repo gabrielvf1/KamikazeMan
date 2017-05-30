@@ -1,4 +1,5 @@
 import pygame
+#def MenuPersonagem():
 pygame.init()
 
 display_width=800
@@ -21,9 +22,10 @@ Img_Inciar_jogo=pygame.image.load('Imagens\MenuPersonagens\Iniciar_jogo.png')
 Img_Voltar=pygame.image.load('Imagens\MenuPersonagens\Voltar.png')
 Img_Voltar_selecionada=pygame.image.load('Imagens\MenuPersonagens\Voltar_selecionada.png')
 Img_Inciar_jogo_selecionada=pygame.image.load('Imagens\MenuPersonagens\Iniciar_jogo_selecionada.png')
+Img_Player_Selecionado1=pygame.image.load('Imagens\MenuPersonagens\selecionando_player1.png')
+Img_Player_Selecionado2=pygame.image.load('Imagens\MenuPersonagens\selecionando_player2.png')
 
-
-def Menu_Personagens(Imagem_Estatica,Personagem1,Personagem2,Personagem3,Personagem4,Iniciar_Jogo,Voltar):
+def Menu_Personagens(Imagem_Estatica,Personagem1,Personagem2,Personagem3,Personagem4,Iniciar_Jogo,Voltar,Qual_Player):
 	gameDisplay.blit(Imagem_Estatica,(0,0))
 	gameDisplay.blit(pygame.transform.scale(Personagem1,(175,220)),(12.5,65))
 	gameDisplay.blit(pygame.transform.scale(Personagem2,(175,220)),(212.5,65))
@@ -31,56 +33,128 @@ def Menu_Personagens(Imagem_Estatica,Personagem1,Personagem2,Personagem3,Persona
 	gameDisplay.blit(pygame.transform.scale(Personagem4,(175,220)),(612.5,65))
 	gameDisplay.blit(Iniciar_Jogo,(100,400))
 	gameDisplay.blit(Voltar,(100,500))
+	gameDisplay.blit(Qual_Player,(225,10))
 
 marcacao_cima_baixo=1
 marcacao=1
-marcacao_transicao=1
-Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+marcapersonagem=1
+marcamenu=0
+marcacao_player=1
+ImagemJogador_1=0
+ImagemJogador_2=0
+Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar,Img_Player_Selecionado1)
 
+#MarcaPersonagem | 1 = Delc| 2 = Gabriel | 3 = Matheus | 4 = Vini
+#MarcaMenu |
 while not crashed:
 	for event in pygame.event.get():
 		if event.type==pygame.QUIT:
 			crashed=True
 		if event.type==pygame.KEYDOWN:
-
+			#Apertando Direita
 			if marcacao==1  and event.key == pygame.K_RIGHT:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar,Img_Player_Selecionado1)
 				marcacao=2
 				marcacao_cima_baixo=1
+				marcapersonagem=2
 			elif marcacao==2 and event.key==pygame.K_RIGHT:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar,Img_Player_Selecionado1)
 				marcacao=3
 				marcacao_cima_baixo=1
+				marcapersonagem=3
 			elif marcacao==3 and event.key==pygame.K_RIGHT:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4_selecionado,Img_Inciar_jogo,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4_selecionado,Img_Inciar_jogo,Img_Voltar,Img_Player_Selecionado1)
 				marcacao=4
 				marcacao_cima_baixo=1
+				marcapersonagem=4
+			#Apertando Esquerda
 			if marcacao==2 and event.key == pygame.K_LEFT:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar,Img_Player_Selecionado1)
 				marcacao=1
 				marcacao_cima_baixo=1
+				marcapersonagem=1
 			elif marcacao==3 and event.key == pygame.K_LEFT:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar,Img_Player_Selecionado1)
 				marcacao=2
 				marcacao_cima_baixo=1
+				marcapersonagem=2
 			elif marcacao==4 and event.key == pygame.K_LEFT:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar,Img_Player_Selecionado1)
 				marcacao=3
 				marcacao_cima_baixo=1
+				marcapersonagem=3
+			#Apertando Pra Baixo
 			if marcacao_cima_baixo == 1 and event.key == pygame.K_DOWN:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo_selecionada,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo_selecionada,Img_Voltar,Img_Player_Selecionado1)
 				marcacao_cima_baixo=2
 				marcacao=1
+				marcamenu=1
+				marcapersonagem=0
 			elif marcacao_cima_baixo == 2 and event.key == pygame.K_DOWN:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar_selecionada)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar_selecionada,Img_Player_Selecionado1)
 				marcacao_cima_baixo=1
+				marcamenu=2
+				marcapersonagem=0
+			#Apertando Pra Cima
 			if marcacao_cima_baixo == 1 and event.key == pygame.K_UP:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo_selecionada,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo_selecionada,Img_Voltar,Img_Player_Selecionado1)
 				marcacao_cima_baixo=2
+				marcamenu=1
+				marcapersonagem=0
 			elif marcacao_cima_baixo==2 and event.key==pygame.K_UP:
-				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar,Img_Player_Selecionado1)
+				marcapersonagem=1
+				marcamenu=0
+				marcacao_cima_baixo=1
+			#Apertando Enter Personagem
+			if marcapersonagem==1 and event.key==pygame.K_RETURN and marcacao_player==1:
+				marcacao_player=2
+				ImagemJogador_1=1 #Delc
+				Img_personagem1=Img_personagem1_selecionado
+				print(marcacao_player)
+			elif marcapersonagem==2 and event.key==pygame.K_RETURN and marcacao_player==1:
+				marcacao_player=2
+				ImagemJogador_1=2 #Gabriel
+				Img_personagem2=Img_personagem2_selecionado
+				print(marcacao_player)
+			elif marcapersonagem==3 and event.key==pygame.K_RETURN and marcacao_player==1:
+				marcacao_player=2
+				ImagemJogador_1=3 #Matheus
+				Img_personagem3=Img_personagem3_selecionado
+				print(marcacao_player)
+			elif marcapersonagem==4 and event.key==pygame.K_RETURN and marcacao_player==1:
+				marcacao_player=2
+				ImagemJogador_1=4 #Vini
+				Img_personagem4=Img_personagem4_selecionado
+				print(marcacao_player)
 
 
+			#PLAYER2
+			if marcapersonagem==1 and event.key==pygame.K_SPACE and marcacao_player==2:
+				marcacao_player=3
+				ImagemJogador_2=1 #Delc
+				Img_personagem1=Img_personagem1_selecionado
+			elif marcapersonagem==2 and event.key==pygame.K_SPACE and marcacao_player==2:
+				marcacao_player=3
+				ImagemJogador_2=2 #Gabriel
+				Img_personagem2=Img_personagem2_selecionado
+			elif marcapersonagem==3 and event.key==pygame.K_SPACE and marcacao_player==2:
+				marcacao_player=3
+				ImagemJogador_2=3 #Matheus
+				Img_personagem3=Img_personagem3_selecionado
+			elif marcapersonagem==4 and event.key==pygame.K_SPACE and marcacao_player==2:
+				marcacao_player=3
+				ImagemJogador_2=4 #Vini
+				Img_personagem4=Img_personagem4_selecionado
+
+
+
+			#Apertando Enter Menu
+			# if marcamenu==1 and event.key==pygame.K_RETURN:
+
+			# 	#return
+			# elif marcamenu==2 and event.key==pygame.K_RETURN:
+				#crashed=True
 
 
 
