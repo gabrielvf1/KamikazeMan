@@ -2,6 +2,7 @@ import pygame as pg
 import sys
 from setting import *
 from sprites import *
+import random
 
 img1="Gabriel.png"
 img2="bomberman 1.png"
@@ -9,6 +10,14 @@ img2="bomberman 1.png"
 class Game:
     def __init__(self):
         pg.init()
+
+        # Musica
+        musica=["Judgment 8-BIT - Metal Slug 2X.mp3","Battle Mode Music - Bomberman 64.mp3","Mortal Kombat 8-bit.mp3"]
+        musica_jogo=random.choice(musica)
+        pg.mixer.init()
+        pg.mixer.music.load(musica_jogo)
+        pg.mixer.music.play()
+
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
@@ -22,9 +31,10 @@ class Game:
         self.players=pg.sprite.Group()
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
+        self.random_wall=pg.sprite.Group()
         self.bomba=pg.sprite.Group()
         self.player1 = Player(self, 1, 1,img1)
-        self.player2 = Player(self,5,5,img2)
+        self.player2 = Player(self,13,9,img2)
         self.bomba1=bomba(self,self.player1.x,self.player1.y)
         self.bomba2=bomba(self,self.player2.x,self.player2.y)
         for x in range(1, 15):
@@ -40,6 +50,13 @@ class Game:
         	for i in list(range(2,9,2)):
         		for x in range(u,u+1):
         			Wall(self,x,i)
+        #Blocos aleatorios
+        for i in range(15):
+         x=random.randrange(2,14,1)
+         y=random.randrange(2,8,1)
+         if (x!=13 and y!=9):
+                randwall(self,x,y)
+
 
 
     def run(self):
@@ -68,6 +85,7 @@ class Game:
         self.draw_grid()
         self.all_sprites.draw(self.screen)
         self.bomba1.draw(self.player1.x,self.player1.y)
+        self.random_wall.draw(self.screen)
         pg.display.flip()
 
     def events(self):	 

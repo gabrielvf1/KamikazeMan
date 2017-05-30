@@ -56,6 +56,20 @@ class Wall(pg.sprite.Sprite):
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
 
+class randwall(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.random_wall
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game=game
+        self.image=pg.image.load(os.path.join(img_folder,"bloco.png")).convert()
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.rect.x = x * TILESIZE
+        self.rect.y = y * TILESIZE
+
+
 class bomba(pg.sprite.Sprite):
         def __init__(self,game,x,y):
             self.bomba_group=game.bomba
