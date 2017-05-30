@@ -34,6 +34,9 @@ class Player(pg.sprite.Sprite):
         for player in self.player_group:
             if player.x== self.x + dx and player.y==self.y+dy:
                 return True
+        for wall in self.game.random_wall:
+            if wall.x == self.x + dx and wall.y==self.y + dy:
+                return True        
         
         return False
 
