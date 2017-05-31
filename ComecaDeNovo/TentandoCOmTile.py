@@ -3,9 +3,9 @@ import sys
 from setting import *
 from sprites import *
 import random
-from menupersonagens import *
 
-img1_player1="Gabriel.png"
+
+img1_player1="Gabriel_32x32.png"
 img2_player2="bomberman 1.png"
 
 class Game:
@@ -35,8 +35,8 @@ class Game:
         self.walls = pg.sprite.Group()
         self.random_wall=pg.sprite.Group()
         self.bombas=pg.sprite.Group()
-        self.player1 = Player(self, 1, 1,img1)
-        self.player2 = Player(self,13,9,img2)
+        self.player1 = Player(self, 1, 1,img1_player1)
+        self.player2 = Player(self,13,9,img2_player2)
         for x in range(1, 15):
             Wall(self, x, 0)
         for y in range (0,11):
