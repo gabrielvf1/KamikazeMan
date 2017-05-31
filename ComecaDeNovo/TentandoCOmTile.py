@@ -3,10 +3,11 @@ import sys
 from setting import *
 from sprites import *
 import random
+from menupersonagens import *
 
-img1="Gabriel.png"
-img2="bomberman 1.png"
-# bombaimg="bomba.png"
+img1_player1="Gabriel.png"
+img2_player2="bomberman 1.png"
+
 class Game:
     def __init__(self):
         pg.init()
@@ -25,6 +26,7 @@ class Game:
         self.load_data()
 
     def load_data(self):
+
         pass
 
     def new(self):
@@ -32,11 +34,9 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.random_wall=pg.sprite.Group()
-        self.bomba=pg.sprite.Group()
+        self.bombas=pg.sprite.Group()
         self.player1 = Player(self, 1, 1,img1)
         self.player2 = Player(self,13,9,img2)
-        self.bomba1=bomba(self,self.player1.x,self.player1.y)
-        self.bomba2=bomba(self,self.player2.x,self.player2.y)
         for x in range(1, 15):
             Wall(self, x, 0)
         for y in range (0,11):
@@ -84,7 +84,6 @@ class Game:
         self.screen.fill(BGCOLOR)
         self.draw_grid()
         self.all_sprites.draw(self.screen)
-        self.bomba1.draw(self.player1.x,self.player1.y)
         self.random_wall.draw(self.screen)
         pg.display.flip()
 
@@ -111,7 +110,8 @@ class Game:
                 	self.player2.move(dy=-1)
                 if event.key == pg.K_s:
                 	self.player2.move(dy=1)
-                # if event.key==pg.K_SPACE:
+                if event.key == pg.K_SPACE:
+                    Bomba(self,self.player1.x,self.player1.y)
 
     def show_start_screen(self):
         pass

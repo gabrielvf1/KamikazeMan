@@ -9,30 +9,30 @@ pygame.display.set_caption('Bomberman_Personagens')
 clock = pygame.time.Clock()
 crashed = False
 
-menu_Img_personagens=pygame.image.load('Imagens\MenuPersonagens\Menu escolha-1.png')
-Escolhendo_personagem_img_1=pygame.image.load('Imagens\MenuPersonagens\Menu escolha-5.png')
-Escolhendo_personagem_img_2=pygame.image.load('Imagens\MenuPersonagens\Menu escolha-6.png')
+menu_Img_personagens=pygame.image.load('img\MenuPersonagens\Menu escolha-1.png')
+Escolhendo_personagem_img_1=pygame.image.load('img\MenuPersonagens\Menu escolha-5.png')
+Escolhendo_personagem_img_2=pygame.image.load('img\MenuPersonagens\Menu escolha-6.png')
 
-Img_personagem1=pygame.image.load('Imagens\MenuPersonagens\Delc.png')
-Img_personagem1_selecionado=pygame.image.load('Imagens\MenuPersonagens\Delc_Selecionado.png')
+Img_personagem1=pygame.image.load('img\MenuPersonagens\Delc.png')
+Img_personagem1_selecionado=pygame.image.load('img\MenuPersonagens\Delc_Selecionado.png')
 
-Img_personagem2=pygame.image.load('Imagens\MenuPersonagens\Gabriel.png')
-Img_personagem2_selecionado=pygame.image.load('Imagens\MenuPersonagens\Gabriel_Selecionado.png')
+Img_personagem2=pygame.image.load('img\MenuPersonagens\Gabriel.png')
+Img_personagem2_selecionado=pygame.image.load('img\MenuPersonagens\Gabriel_Selecionado.png')
 
-Img_personagem3=pygame.image.load('Imagens\MenuPersonagens\Matheus.png')
-Img_personagem3_selecionado=pygame.image.load('Imagens\MenuPersonagens\Matheus_Selecionado.png')
+Img_personagem3=pygame.image.load('img\MenuPersonagens\Matheus.png')
+Img_personagem3_selecionado=pygame.image.load('img\MenuPersonagens\Matheus_Selecionado.png')
 
-Img_personagem4=pygame.image.load('Imagens\MenuPersonagens\Vini.png')
-Img_personagem4_selecionado=pygame.image.load('Imagens\MenuPersonagens\Vini_Selecionado.png')
+Img_personagem4=pygame.image.load('img\MenuPersonagens\Vini.png')
+Img_personagem4_selecionado=pygame.image.load('img\MenuPersonagens\Vini_Selecionado.png')
 
-Img_Inciar_jogo=pygame.image.load('Imagens\MenuPersonagens\Iniciar_jogo.png')
-Img_Voltar=pygame.image.load('Imagens\MenuPersonagens\Voltar.png')
+Img_Inciar_jogo=pygame.image.load('img\MenuPersonagens\Iniciar_jogo.png')
+Img_Voltar=pygame.image.load('img\MenuPersonagens\Voltar.png')
 
-Img_Voltar_selecionada=pygame.image.load('Imagens\MenuPersonagens\Voltar_selecionada.png')
-Img_Inciar_jogo_selecionada=pygame.image.load('Imagens\MenuPersonagens\Iniciar_jogo_selecionada.png')
+Img_Voltar_selecionada=pygame.image.load('img\MenuPersonagens\Voltar_selecionada.png')
+Img_Inciar_jogo_selecionada=pygame.image.load('img\MenuPersonagens\Iniciar_jogo_selecionada.png')
 
-Img_Player_Selecionado1=pygame.image.load('Imagens\MenuPersonagens\selecionando_player1.png')
-Img_Player_Selecionado2=pygame.image.load('Imagens\MenuPersonagens\selecionando_player2.png')
+Img_Player_Selecionado1=pygame.image.load('img\MenuPersonagens\selecionando_player1.png')
+Img_Player_Selecionado2=pygame.image.load('img\MenuPersonagens\selecionando_player2.png')
 
 def Menu_Personagens(Imagem_Estatica,Escolhendo_personagem,Personagem1,Personagem2,Personagem3,Personagem4,Iniciar_Jogo,Voltar):
 	gameDisplay.blit(Imagem_Estatica,(0,0))
@@ -115,14 +115,13 @@ while not crashed:
 				marcapersonagem=1
 				marcamenu=0
 				marcacao_cima_baixo=1
-
 			#Apertando Enter Personagem
 			if marcapersonagem==1 and event.key==pygame.K_RETURN and marcacao_player==1:
 				marcacao_player=2
 				ImagemJogador_1=1 #Delc
-				img1_player1 = 
 				Img_personagem1=Img_personagem1_selecionado
 				Escolhendo_personagem_img_1=Escolhendo_personagem_img_2
+				img1_player1 = "img\Sprites personagens\Delc_32x32.png"
 				Imagem_menu=Menu_Personagens(menu_Img_personagens,Escolhendo_personagem_img_1,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
 				print(marcacao_player)
 			elif marcapersonagem==2 and event.key==pygame.K_RETURN and marcacao_player==1:
@@ -130,6 +129,7 @@ while not crashed:
 				ImagemJogador_1=2 #Gabriel
 				Img_personagem2=Img_personagem2_selecionado
 				Escolhendo_personagem_img_1=Escolhendo_personagem_img_2
+				img1_player1 = "img\Sprites personagens\Gabriel_32x32.png"
 				Imagem_menu=Menu_Personagens(menu_Img_personagens,Escolhendo_personagem_img_1,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
 				print(marcacao_player)
 			elif marcapersonagem==3 and event.key==pygame.K_RETURN and marcacao_player==1:
@@ -137,6 +137,7 @@ while not crashed:
 				ImagemJogador_1=3 #Matheus
 				Img_personagem3=Img_personagem3_selecionado
 				Escolhendo_personagem_img_1=Escolhendo_personagem_img_2
+				img1_player1 = "img\Sprites personagens\Matheus_32x32.png"
 				Imagem_menu=Menu_Personagens(menu_Img_personagens,Escolhendo_personagem_img_1,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
 				print(marcacao_player)
 			elif marcapersonagem==4 and event.key==pygame.K_RETURN and marcacao_player==1:
@@ -144,6 +145,7 @@ while not crashed:
 				ImagemJogador_1=4 #Vini
 				Img_personagem4=Img_personagem4_selecionado
 				Escolhendo_personagem_img_1=Escolhendo_personagem_img_2
+				img1_player1 = "img\Sprites personagens\Vini_32x32.png"
 				Imagem_menu=Menu_Personagens(menu_Img_personagens,Escolhendo_personagem_img_1,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4_selecionado,Img_Inciar_jogo,Img_Voltar)
 				print(marcacao_player)
 
@@ -153,18 +155,26 @@ while not crashed:
 				marcacao_player=3
 				ImagemJogador_2=1 #Delc
 				Img_personagem1=Img_personagem1_selecionado
+				img2_player2 = "img\Sprites personagens\Delc_32x32.png"
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Escolhendo_personagem_img_1,Img_personagem1_selecionado,Img_personagem2,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
 			elif marcapersonagem==2 and event.key==pygame.K_SPACE and marcacao_player==2:
 				marcacao_player=3
 				ImagemJogador_2=2 #Gabriel
 				Img_personagem2=Img_personagem2_selecionado
+				img2_player2 = "img\Sprites personagens\Gabriel_32x32.png"
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Escolhendo_personagem_img_1,Img_personagem1,Img_personagem2_selecionado,Img_personagem3,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
 			elif marcapersonagem==3 and event.key==pygame.K_SPACE and marcacao_player==2:
 				marcacao_player=3
 				ImagemJogador_2=3 #Matheus
 				Img_personagem3=Img_personagem3_selecionado
+				img2_player2 = "img\Sprites personagens\Matheus_32x32.png"
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Escolhendo_personagem_img_1,Img_personagem1,Img_personagem2,Img_personagem3_selecionado,Img_personagem4,Img_Inciar_jogo,Img_Voltar)
 			elif marcapersonagem==4 and event.key==pygame.K_SPACE and marcacao_player==2:
 				marcacao_player=3
 				ImagemJogador_2=4 #Vini
 				Img_personagem4=Img_personagem4_selecionado
+				img2_player2 = "img\Sprites personagens\Vini_32x32.png"
+				Imagem_menu=Menu_Personagens(menu_Img_personagens,Escolhendo_personagem_img_1,Img_personagem1,Img_personagem2,Img_personagem3,Img_personagem4_selecionado,Img_Inciar_jogo,Img_Voltar)
 
 
 

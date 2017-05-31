@@ -14,7 +14,7 @@ class Player(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.player_group)
         self.game = game
         self.img=img
-        self.image=pg.image.load(os.path.join(img_folder,img)).convert()
+        self.image=pg.image.load(os.path.join(img_folder,img)).convert_alpha()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.x = x
@@ -51,7 +51,7 @@ class Wall(pg.sprite.Sprite):
         self.groups = game.all_sprites, game.walls
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game=game
-        self.image=pg.image.load(os.path.join(img_folder,"bloco.png")).convert()
+        self.image=pg.image.load(os.path.join(img_folder,"bloco.png")).convert_alpha()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.x = x
@@ -64,7 +64,7 @@ class randwall(pg.sprite.Sprite):
         self.groups = game.random_wall
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game=game
-        self.image=pg.image.load(os.path.join(img_folder,"bloco.png")).convert()
+        self.image=pg.image.load(os.path.join(img_folder,"bloco.png")).convert_alpha()
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.x = x
@@ -73,18 +73,17 @@ class randwall(pg.sprite.Sprite):
         self.rect.y = y * TILESIZE
 
 
-class bomba(pg.sprite.Sprite):
-        def __init__(self,game,x,y):
-            self.bomba_group=game.bomba
-            pg.sprite.Sprite.__init__(self,self.bomba_group)
-            self.game=game
-            self.image= pg.image.load(os.path.join(img_folder,"bomba.png")).convert()
-            self.rect=self.image.get_rect()
-            self.x=x
-            self.y=y
 
-        def draw(self,x,y):
-            pressed=pg.key.get_pressed()
-            if pressed[pg.K_SPACE]:
-             self.game.screen.blit(self.image,(x*TILESIZE,y*TILESIZE))
-                    # def explosao(self):
+class Bomba(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites, game.bombas
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game=game
+        self.image=pg.image.load(os.path.join(img_folder,"Bomba.png")).convert_alpha()
+        self.rect=self.image.get_rect()
+        self.x = x
+        self.y = y
+
+    def update(self):
+        self.rect.x = self.x * TILESIZE
+        self.rect.y = self.y * TILESIZE
