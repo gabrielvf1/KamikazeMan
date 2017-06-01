@@ -53,7 +53,7 @@ class Game:
         		for x in range(u,u+1):
         			Wall(self,x,i)
         #Blocos aleatorios
-        for i in range(20):
+        for i in range(17):
          x=random.randrange(2,14,1)
          y=random.randrange(2,8,1)
          if (x!=13 and y!=9):
@@ -91,6 +91,7 @@ class Game:
 
     def events(self):	 
         for event in pg.event.get():
+            print(event)
             if event.type == pg.QUIT:
                 self.quit()
             if event.type == pg.KEYDOWN:
@@ -104,6 +105,8 @@ class Game:
                     self.player2.move(dy=-1)
                 if event.key == pg.K_DOWN:
                     self.player2.move(dy=1)
+                if event.key == pg.K_PERIOD:
+                    Bomba(self,self.player2.x,self.player2.y)
                 if event.key == pg.K_a:
                 	self.player1.move(dx=-1)
                 if event.key == pg.K_d:

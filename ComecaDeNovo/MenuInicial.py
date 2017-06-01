@@ -51,3 +51,4 @@ def MenuInicial():
 
 	pygame.quit()
 	quit()
+
