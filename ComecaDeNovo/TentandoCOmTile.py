@@ -13,9 +13,9 @@ class Game:
     def __init__(self):
         pg.init()
         
-
+        self.loop
         # Musica
-        musica=["Judgment 8-BIT - Metal Slug 2X.mp3","Battle Mode Music - Bomberman 64.mp3","Mortal Kombat 8-bit.mp3"]
+        musica=["Battle Mode Music - Bomberman 64.mp3","Mortal Kombat 8-bit.mp3"]
         musica_jogo=random.choice(musica)
         pg.mixer.init()
         pg.mixer.music.load(musica_jogo)
@@ -31,7 +31,7 @@ class Game:
 
     def load_data(self):
 
-        pass
+        pass;
 
     def new(self):
         self.players=pg.sprite.Group()
@@ -130,9 +130,3 @@ class Game:
         pass
 
 
-g = Game()
-g.show_start_screen()
-while True:
-    g.new()
-    g.run()
-    g.show_go_screen()
