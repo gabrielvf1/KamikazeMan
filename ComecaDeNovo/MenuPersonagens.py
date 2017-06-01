@@ -1,7 +1,14 @@
 import pygame
+import random
 #def MenuPersonagem():
 def MenuPersonagem():
 	pygame.init()
+
+	musica1=["Judgment 8-BIT - Metal Slug 2X.mp3"]
+	musica_jogo=random.choice(musica1)
+	pygame.mixer.init()
+	pygame.mixer.music.load(musica_jogo)
+	pygame.mixer.music.play()
 
 	display_width=800
 	display_height=600

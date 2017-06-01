@@ -53,7 +53,7 @@ class Game:
         		for x in range(u,u+1):
         			Wall(self,x,i)
         #Blocos aleatorios
-        for i in range(15):
+        for i in range(20):
          x=random.randrange(2,14,1)
          y=random.randrange(2,8,1)
          if (x!=13 and y!=9):
@@ -97,21 +97,21 @@ class Game:
                 if event.key == pg.K_ESCAPE:
                     self.quit()
                 if event.key == pg.K_LEFT:
-                    self.player1.move(dx=-1)
+                    self.player2.move(dx=-1)
                 if event.key == pg.K_RIGHT:
-                    self.player1.move(dx=1)
+                    self.player2.move(dx=1)
                 if event.key == pg.K_UP:
-                    self.player1.move(dy=-1)
+                    self.player2.move(dy=-1)
                 if event.key == pg.K_DOWN:
-                    self.player1.move(dy=1)
+                    self.player2.move(dy=1)
                 if event.key == pg.K_a:
-                	self.player2.move(dx=-1)
+                	self.player1.move(dx=-1)
                 if event.key == pg.K_d:
-                	self.player2.move(dx=1)
+                	self.player1.move(dx=1)
                 if event.key == pg.K_w:
-                	self.player2.move(dy=-1)
+                	self.player1.move(dy=-1)
                 if event.key == pg.K_s:
-                	self.player2.move(dy=1)
+                	self.player1.move(dy=1)
                 if event.key == pg.K_SPACE:
                     Bomba(self,self.player1.x,self.player1.y)
 
