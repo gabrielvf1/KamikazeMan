@@ -37,9 +37,7 @@ class Player(pg.sprite.Sprite):
         for wall in self.game.random_wall:
             if wall.x == self.x + dx and wall.y==self.y + dy:
                 return True        
-        for bombas in self.game.bombas:
-            if wall.x == self.x + dx and wall.y==self.y + dy:
-                return True        
+        
         return False
 
 
@@ -77,15 +75,27 @@ class randwall(pg.sprite.Sprite):
 
 
 class Bomba(pg.sprite.Sprite):
-    def __init__(self, game, x, y):
+    def __init__(self, game, player):
         self.groups = game.all_sprites, game.bombas
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game=game
         self.image=pg.image.load(os.path.join(img_folder,"Bomba.png")).convert_alpha()
         self.rect=self.image.get_rect()
-        self.x = x
-        self.y = y
+        self.x = player.x
+        self.y = player.y
+        self.explosionmoment=game.momento+120
 
     def update(self):
-        self.rect.x = self.x * TILESIZE
-        self.rect.y = self.y * TILESIZE
+        if self.explosionmoment>self.game.momento:
+            self.rect.x = self.x * TILESIZE
+            self.rect.y = self.y * TILESIZE
+        else:
+            self.rect.x = 500 * TILESIZE
+            self.rect.y = 500 * TILESIZE
+
+    def explosao(self,player1,player2,bombs):
+         if self.explosionmoment==self.game.momento:
+            del bombs[0]
+            if (self.x==player1.x and self.y+(TILESIZE*2)>player1.y and self.y - (TILESIZE*2)<player1.y) or (self.x==player2.x and self.y+(TILESIZE*2)>player2.y and self.y - (TILESIZE*2)<player2.y) or (self.y==player1.y and self.x+(TILESIZE*2)>player1.x and self.x - (TILESIZE*2)<player1.x) or (self.y==player2.y and self.x+(TILESIZE*2)>player2.x and self.x - (TILESIZE*2)<player2.x):
+                
+                    print ("Morreu")
