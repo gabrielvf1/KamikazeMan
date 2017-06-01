@@ -84,8 +84,6 @@ class Bomba(pg.sprite.Sprite):
         self.x = player.x
         self.y = player.y
         self.explosionmoment=game.momento+120
-        self.raiox=1
-        self.raioy=1
 
     def update(self):
         if self.explosionmoment>self.game.momento:
@@ -98,11 +96,10 @@ class Bomba(pg.sprite.Sprite):
     def explosao(self,player1,player2,bombs):
          if self.explosionmoment==self.game.momento:
             del bombs[0]
-            # if (self.x==player1.x and self.y+(TILESIZE*2)>player1.y and self.y - (TILESIZE*2)<player1.y) or (self.x==player2.x and self.y+(TILESIZE*2)>player2.y and self.y - (TILESIZE*2)<player2.y) or (self.y==player1.y and self.x+(TILESIZE*2)>player1.x and self.x - (TILESIZE*2)<player1.x) or (self.y==player2.y and self.x+(TILESIZE*2)>player2.x and self.x - (TILESIZE*2)<player2.x):
-            if (self.x==player1.x and self.y==player1.y) or (self.x+self.raiox==player1.x and self.y==player1.y) or (self.x-self.raiox==player1.x and self.y==player1.y) \
-            or (self.x==player1.x and self.y+self.raioy==player1.y) or (self.x==player1.x and self.y-self.raioy==player1.y):
-                print("Player 2 ganhou!")
+            #if (self.x==player2.x and self.y+(TILESIZE*3)>player2.y and (self.y - (TILESIZE*3)<player2.y)) or ((self.y==player2.y and self.x+(TILESIZE*3)>player2.x) and self.x - (TILESIZE*3)<player2.x):
+            if self.x==player2.x and (self.y+1==player2.y or (self.y==player2.y) or (self.y-1==player2.y)) or (self.y==player2.y and (self.x+1==player2.x or (self.x==player2.x) or (self.x-1==player2.x))):
+                print("Player2 morreu")
 
-            if (self.x==player2.x and self.y==player2.y) or (self.x+self.raiox==player2.x and self.y==player2.y) or (self.x-self.raiox==player2.x and self.y==player2.y) \
-            or (self.x==player2.x and self.y+self.raioy==player2.y) or (self.x==player2.x and self.y-self.raioy==player2.y):
-                    print ("Player 1 ganhou!")
+            #if (self.x==player1.x and self.y+(TILESIZE*3)>player1.y and (self.y - (TILESIZE*3)<player1.y)) or ((self.y==player1.y and self.x+(TILESIZE*3)>player1.x) and self.x - (TILESIZE*3)<player1.x):
+            if (self.x==player1.x and (self.y+1==player1.y or (self.y==player1.y) or (self.y-1==player1.y))) or (self.y==player1.y and (self.x+1==player1.x or (self.x==player1.x) or (self.x-1==player1.x))): 
+                print ("player1 Morreu")
