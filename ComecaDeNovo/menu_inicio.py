@@ -14,11 +14,11 @@ def MenuInicial():
 	clock = pygame.time.Clock()
 	crashed = False
 
-	menu_Img=pygame.image.load('\img\MenuInicial\Menu_inicial.png')
-	iniciar_img=pygame.image.load('\img\MenuInicial\Iniciar_Jogo.png')
-	sair_img=pygame.image.load('\img\MenuInicial\Sair_do_jogo.png')
-	iniciar_img_selecionada=pygame.image.load('\img\MenuInicial\Escolha_Iniciar.png')
-	sair_img_selecionada=pygame.image.load('\img\MenuInicial\Escolha_Sair.png')
+	menu_Img=pygame.image.load('img\MenuInicial\Menu_inicial.png')
+	iniciar_img=pygame.image.load('img\MenuInicial\Iniciar_Jogo.png')
+	sair_img=pygame.image.load('img\MenuInicial\Sair_do_jogo.png')
+	iniciar_img_selecionada=pygame.image.load('img\MenuInicial\Escolha_Iniciar.png')
+	sair_img_selecionada=pygame.image.load('img\MenuInicial\Escolha_Sair.png')
 	def Menu(ImagemFundo,ImagemIniciar,ImagemSair):
 		gameDisplay.blit(ImagemFundo,(0,0))
 		gameDisplay.blit(ImagemIniciar,(25,100))
