@@ -3,14 +3,16 @@ import sys
 from setting import *
 from sprites import *
 import random
+from MenuPersonagens import *
 
 
-img1_player1="Gabriel_32x32.png"
-img2_player2="bomberman 1.png"
+Personagems=MenuPersonagem()
+
 
 class Game:
     def __init__(self):
         pg.init()
+        
 
         # Musica
         musica=["Judgment 8-BIT - Metal Slug 2X.mp3","Battle Mode Music - Bomberman 64.mp3","Mortal Kombat 8-bit.mp3"]
@@ -35,8 +37,8 @@ class Game:
         self.walls = pg.sprite.Group()
         self.random_wall=pg.sprite.Group()
         self.bombas=pg.sprite.Group()
-        self.player1 = Player(self, 1, 1,img1_player1)
-        self.player2 = Player(self,13,9,img2_player2)
+        self.player1 = Player(self, 1, 1,Personagems[0])
+        self.player2 = Player(self,13,9,Personagems[1])
         for x in range(1, 15):
             Wall(self, x, 0)
         for y in range (0,11):
