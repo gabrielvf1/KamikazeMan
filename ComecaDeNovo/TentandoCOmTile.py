@@ -102,21 +102,23 @@ class Game:
                 if event.key == pg.K_ESCAPE:
                     self.quit()
                 if event.key == pg.K_LEFT:
-                    self.player1.move(dx=-1)
+                    self.player2.move(dx=-1)
                 if event.key == pg.K_RIGHT:
-                    self.player1.move(dx=1)
+                    self.player2.move(dx=1)
                 if event.key == pg.K_UP:
-                    self.player1.move(dy=-1)
+                    self.player2.move(dy=-1)
                 if event.key == pg.K_DOWN:
-                    self.player1.move(dy=1)
+                    self.player2.move(dy=1)
+                if event.key == pg.K_PERIOD:
+                    self.bombs.append(Bomba(self,self.player2))
                 if event.key == pg.K_a:
-                	self.player2.move(dx=-1)
+                    self.player1.move(dx=-1)
                 if event.key == pg.K_d:
-                	self.player2.move(dx=1)
+                    self.player1.move(dx=1)
                 if event.key == pg.K_w:
-                	self.player2.move(dy=-1)
+                    self.player1.move(dy=-1)
                 if event.key == pg.K_s:
-                	self.player2.move(dy=1)
+                    self.player1.move(dy=1)
                 if event.key == pg.K_SPACE:
                     self.bombs.append(Bomba(self,self.player1))
 
