@@ -8,12 +8,12 @@ from MenuPersonagens import *
 
 Personagems=MenuPersonagem()
 
-
+imagem_explosao=pg.image.load(os.path.join(img_folder,"Explosao_inicial.png")).convert_alpha()
 class Game:
     def __init__(self):
         pg.init()
         
-        self.loop
+        self.loop=True
         # Musica
         musica=["Battle Mode Music - Bomberman 64.mp3","Mortal Kombat 8-bit.mp3"]
         musica_jogo=random.choice(musica)
@@ -28,6 +28,7 @@ class Game:
         self.load_data()
         self.momento=0
         self.bombs=[]
+ 
 
     def load_data(self):
 
@@ -39,21 +40,22 @@ class Game:
         self.walls = pg.sprite.Group()
         self.random_wall=pg.sprite.Group()
         self.bombas=pg.sprite.Group()
+        self.explosao=pg.sprite.Group()
         self.player1 = Player(self, 1, 1,Personagems[0])
         self.player2 = Player(self,13,9,Personagems[1])
         for x in range(1, 15):
-            Wall(self, x, 0)
+            randwall(self, x, 0)
         for y in range (0,11):
-        	Wall(self,0,y)
+        	randwall(self,0,y)
         for x in range(1, 16):
-        	Wall(self, x, 10)
+        	randwall(self, x, 10)
         for y in range (1,10):
-        	Wall(self,14,y)
+        	randwall(self,14,y)
         #BLOCOS CENTRO
         for u in list(range(2,14,2)):
         	for i in list(range(2,9,2)):
         		for x in range(u,u+1):
-        			Wall(self,x,i)
+        			randwall(self,x,i)
         #Blocos aleatorios
         for i in range(15):
          x=random.randrange(2,14,1)
@@ -71,11 +73,11 @@ class Game:
             self.update()
             self.draw()
             for bomb in self.bombs:
-                bomb.explosao(self.player1,self.player2,self.bombs)      
+                bomb.explosao(self.player1,self.player2,self.bombs)    
             self.momento+=1
-
+           
+    
     def quit(self):
-        pg.quit()
         sys.exit()
 
     def update(self):
@@ -88,7 +90,7 @@ class Game:
             pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
 
     def draw(self):
-        self.screen.fill(BGCOLOR)
+        self.screen.fill((200,200,200))
         self.draw_grid()
         self.all_sprites.draw(self.screen)
         self.random_wall.draw(self.screen)
@@ -109,8 +111,9 @@ class Game:
                     self.player2.move(dy=-1)
                 if event.key == pg.K_DOWN:
                     self.player2.move(dy=1)
-                if event.key == pg.K_PERIOD:
-                    self.bombs.append(Bomba(self,self.player2))
+                if event.key == pg.K_PERIOD and self.player2.limitebombas>0:
+                    self.bombs.append(Bomba(self,self.player2,self.screen))
+                    self.player2.limitebombas-=1
                 if event.key == pg.K_a:
                     self.player1.move(dx=-1)
                 if event.key == pg.K_d:
@@ -119,8 +122,9 @@ class Game:
                     self.player1.move(dy=-1)
                 if event.key == pg.K_s:
                     self.player1.move(dy=1)
-                if event.key == pg.K_SPACE:
-                    self.bombs.append(Bomba(self,self.player1))
+                if event.key == pg.K_SPACE and self.player1.limitebombas>0:
+                    self.bombs.append(Bomba(self,self.player1,self.screen))
+                    self.player1.limitebombas-=1
 
 
     def show_start_screen(self):
@@ -130,3 +134,9 @@ class Game:
         pass
 
 
+g = Game()
+g.show_start_screen()
+while g.loop:
+    g.new()
+    g.run()
+    g.show_go_screen()
