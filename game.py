@@ -5,10 +5,8 @@ from sprites import *
 import random
 from MenuPersonagens import *
 
-
+a=1
 Personagems=MenuPersonagem()
-
-imagem_explosao=pg.image.load(os.path.join(img_folder,"Explosao_inicial.png")).convert_alpha()
 class Game:
     def __init__(self):
         pg.init()
@@ -62,7 +60,8 @@ class Game:
          if (x!=13 and y!=9):
                 randwall(self,x,y)
 
-
+    def menu(self):
+        Personagems=MenuPersonagem()
 
     def run(self):
         self.playing = True
@@ -162,7 +161,11 @@ class Game:
 g = Game()
 g.show_start_screen()
 
+
+
 while g.loop:
-    g.new()
-    g.run()
-    g.show_go_screen()
+    if Personagems[2]==1:
+        g.menu()
+        g.new()
+        g.run()
+        g.show_go_screen()

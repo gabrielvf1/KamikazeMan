@@ -204,7 +204,8 @@ def MenuPersonagem():
 				 
 
 				if marcacao_player==3 and marcacao_cima_baixo==2 and event.key==pygame.K_RETURN:
-					return img1_player1,img2_player2
+					a=0
+					return img1_player1,img2_player2,a
 
 
 
