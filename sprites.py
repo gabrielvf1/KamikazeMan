@@ -86,6 +86,7 @@ class Bomba(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game=game
         self.explosao1=pg.sprite.Group()
+        self.clock = pg.time.Clock()
         self.image=pg.image.load(os.path.join(img_folder,"Bomba.png")).convert_alpha()
         self.rect=self.image.get_rect()
         self.x = player.x
@@ -110,6 +111,42 @@ class Bomba(pg.sprite.Sprite):
             explosao1(self.game,self.x,self.y+1)
             explosao1(self.game,self.x,self.y-1)
 
+    def draw_text(self, text, font_name, size, color, x, y, align="nw"):
+        font = pg.font.Font(font_name, size)
+        text_surface = font.render(text, True, color)
+        text_rect = text_surface.get_rect()
+        if align == "nw":
+            text_rect.topleft = (x, y)
+        if align == "ne":
+            text_rect.topright = (x, y)
+        if align == "sw":
+            text_rect.bottomleft = (x, y)
+        if align == "se":
+            text_rect.bottomright = (x, y)
+        if align == "n":
+            text_rect.midtop = (x, y)
+        if align == "s":
+            text_rect.midbottom = (x, y)
+        if align == "e":
+            text_rect.midright = (x, y)
+        if align == "w":
+            text_rect.midleft = (x, y)
+        if align == "center":
+            text_rect.center = (x, y)
+        self.screen.blit(text_surface, text_rect) 
+
+    def wait_for_key(self):
+        waiting = True
+        while waiting:
+            self.clock.tick(FPS)
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    waiting=False
+                    self.quit()
+                    quit()
+                if event.type == pg.KEYUP:
+                    waiting=False
+
 
     def explosao(self,player1,player2,bombs):
         if self.explosionmoment+20==self.game.momento:
@@ -120,14 +157,25 @@ class Bomba(pg.sprite.Sprite):
                 if (self.x==player1.x and self.y==player1.y) or (self.x+i==player1.x and self.y==player1.y) or (self.x-i==player1.x and self.y==player1.y) \
                 or (self.x==player1.x and self.y+i==player1.y) or (self.x==player1.x and self.y-i==player1.y):
                     print("Player 2 ganhou!")
-                    self.game.playing=False
+                    self.screen.fill(BLACK)
+                    self.title_font =os.path.join(img_folder, 'ZOMBIE.TTF')
+                    self.draw_text("Parabens Player 2!!", self.title_font,50,RED,WIDTH/2, HEIGHT/2,align="center")
+                    self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
+                    pg.display.flip()
+                    self.wait_for_key()
+                    import game
                     
                     
 
             if (self.x==player2.x and self.y==player2.y) or (self.x+i==player2.x and self.y==player2.y) or (self.x-i==player2.x and self.y==player2.y) \
             or (self.x==player2.x and self.y+i==player2.y) or (self.x==player2.x and self.y-i==player2.y):
-                print ("Player 1 ganhou!")
-                self.game.playing=False
+                self.screen.fill(BLACK)
+                self.title_font =os.path.join(img_folder, 'ZOMBIE.TTF')
+                self.draw_text("Parabens Player 1!!", self.title_font,45,RED,WIDTH/2, HEIGHT/2,align="center")
+                self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
+                pg.display.flip()
+                self.wait_for_key()
+                import game
 
 class explosao1(pg.sprite.Sprite):
     

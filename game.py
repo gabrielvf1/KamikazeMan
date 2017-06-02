@@ -1,12 +1,22 @@
 import pygame as pg
 import sys
+from os import path 
 from setting import *
 from sprites import *
 import random
 from MenuPersonagens import *
+from MenuInicial import MenuInicial
+from Instrucao import Instrucao
 
-a=1
+
+MenuInicial()
 Personagems=MenuPersonagem()
+Instrucao()
+
+
+
+
+imagem_explosao=pg.image.load(os.path.join(img_folder,"Explosao_inicial.png")).convert_alpha()
 class Game:
     def __init__(self):
         pg.init()
@@ -28,8 +38,10 @@ class Game:
  
 
     def load_data(self):
+        game_folder = path.dirname(__file__)
+        img_folder = path.join(game_folder, 'img')
+        self.title_font = path.join(img_folder, 'ZOMBIE.TTF')
 
-        pass;
 
     def new(self):
         self.players=pg.sprite.Group()
@@ -60,8 +72,7 @@ class Game:
          if (x!=13 and y!=9):
                 randwall(self,x,y)
 
-    def menu(self):
-        Personagems=MenuPersonagem()
+
 
     def run(self):
         self.playing = True
@@ -152,20 +163,38 @@ class Game:
     def show_start_screen(self):
         pass
 
-    def show_go_screen(self):
-        self.screen.fill(BLACK)
-        self.loop=False
-        pg.display.flip()
+    # def show_go_screen(self):
+        # self.screen.fill(BLACK)
+        # if Bomba.player_ganhou==1:
+        #     self.draw_text("Parabens Player 1!!", self.title_font,50,RED,WIDTH/2, HEIGHT/2,align="center")
+        #     self.draw_text("Press a key to start", self.title_font,40, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
+        #     pg.display.flip()
+        #     self.wait_for_key()
+
+    #     elif Bomba.player_ganhou==2:
+    #         self.draw_text("Parabens Player 2!!", self.title_font,50,RED,WIDTH/2, HEIGHT/2,align="center")
+    #         self.draw_text("Prewss a key to start", self.title_font,40, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
+    #         pg.display.flip()
+    #         self.wait_for_key()
+
+
+    # def wait_for_key(self):
+    #     waiting = True
+    #     while waiting:
+    #         self.clock.tick(FPS)
+    #         for event in pg.event.get():
+    #             if event.type == pg.QUIT:
+    #                 waiting=False
+    #                 self.quit()
+    #             if event.type == pg.KEYUP:
+    #                 waiting=False
+
 
 
 g = Game()
 g.show_start_screen()
 
-
-
 while g.loop:
-    if Personagems[2]==1:
-        g.menu()
-        g.new()
-        g.run()
-        g.show_go_screen()
+    g.new()
+    g.run()
+    # g.show_go_screen()

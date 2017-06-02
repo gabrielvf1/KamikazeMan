@@ -19,6 +19,9 @@ def Instrucao():
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 crashed=True
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_RETURN:
+                    return
         
 
         pygame.display.update()
@@ -27,4 +30,3 @@ def Instrucao():
 
     pygame.quit()
     quit()
-Instrucao()
