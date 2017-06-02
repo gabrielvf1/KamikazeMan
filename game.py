@@ -25,15 +25,9 @@ class Game:
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
-        self.load_data()
         self.momento=0
         self.bombs=[]
  
-
-    def load_data(self):
-        game_folder = path.dirname(__file__)
-        img_folder = path.join(game_folder, 'img')
-        self.title_font = path.join(img_folder, 'ZOMBIE.TTF')
 
 
     def new(self):
@@ -59,7 +53,7 @@ class Game:
         		for x in range(u,u+1):
         			randwall(self,x,i)
         #Blocos aleatorios
-        for i in range(15):
+        for i in range(18):
          x=random.randrange(2,14,1)
          y=random.randrange(2,8,1)
          if (x!=13 and y!=9):
@@ -137,7 +131,7 @@ class Game:
                     self.player2.move(dy=-1)
                 if event.key == pg.K_DOWN:
                     self.player2.move(dy=1)
-                if event.key == pg.K_PERIOD and self.player2.limitebombas>0:
+                if event.key == pg.K_RSHIFT and self.player2.limitebombas>0:
                     self.bombs.append(Bomba(self,self.player2,self.screen))
                     self.player2.limitebombas-=1
                 if event.key == pg.K_a:
@@ -153,35 +147,6 @@ class Game:
                     self.player1.limitebombas-=1
 
 
-    def show_start_screen(self):
-        pass
-
-    # def show_go_screen(self):
-        # self.screen.fill(BLACK)
-        # if Bomba.player_ganhou==1:
-        #     self.draw_text("Parabens Player 1!!", self.title_font,50,RED,WIDTH/2, HEIGHT/2,align="center")
-        #     self.draw_text("Press a key to start", self.title_font,40, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
-        #     pg.display.flip()
-        #     self.wait_for_key()
-
-    #     elif Bomba.player_ganhou==2:
-    #         self.draw_text("Parabens Player 2!!", self.title_font,50,RED,WIDTH/2, HEIGHT/2,align="center")
-    #         self.draw_text("Prewss a key to start", self.title_font,40, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
-    #         pg.display.flip()
-    #         self.wait_for_key()
-
-
-    # def wait_for_key(self):
-    #     waiting = True
-    #     while waiting:
-    #         self.clock.tick(FPS)
-    #         for event in pg.event.get():
-    #             if event.type == pg.QUIT:
-    #                 waiting=False
-    #                 self.quit()
-    #             if event.type == pg.KEYUP:
-    #                 waiting=False
-
 
 
 g = Game()
@@ -192,7 +157,6 @@ while g.loop:
     Personagems=MenuPersonagem()
     Instrucao() 
     imagem_explosao=pg.image.load(os.path.join(img_folder,"Explosao_inicial.png")).convert_alpha()
-    g.show_start_screen()
     g.screen = pg.display.set_mode((480, 352))
     g.new()
     g.run()

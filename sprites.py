@@ -142,7 +142,6 @@ class Bomba(pg.sprite.Sprite):
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     waiting=False
-                    self.quit()
                     quit()
                 if event.type == pg.KEYUP:
                     waiting=False
@@ -158,9 +157,9 @@ class Bomba(pg.sprite.Sprite):
                 or (self.x==player1.x and self.y+i==player1.y) or (self.x==player1.x and self.y-i==player1.y):
                     print("Player 2 ganhou!")
                     self.screen.fill(BLACK)
-                    self.title_font =os.path.join(img_folder, 'ZOMBIE.TTF')
-                    self.draw_text("Parabens Player 2!!", self.title_font,50,RED,WIDTH/2, HEIGHT/2,align="center")
-                    self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
+                    self.title_font =os.path.join(img_folder, 'FFF_Tusj.TTF')
+                    self.draw_text("Parabens Player 2!!", self.title_font,50,RED,WIDTH/2, HEIGHT/2.5,align="center")
+                    self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/5,align="center")
                     pg.display.flip()
                     self.wait_for_key()
                     self.game.playing=False
@@ -170,9 +169,9 @@ class Bomba(pg.sprite.Sprite):
             if (self.x==player2.x and self.y==player2.y) or (self.x+i==player2.x and self.y==player2.y) or (self.x-i==player2.x and self.y==player2.y) \
             or (self.x==player2.x and self.y+i==player2.y) or (self.x==player2.x and self.y-i==player2.y):
                 self.screen.fill(BLACK)
-                self.title_font =os.path.join(img_folder, 'ZOMBIE.TTF')
-                self.draw_text("Parabens Player 1!!", self.title_font,45,RED,WIDTH/2, HEIGHT/2,align="center")
-                self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
+                self.title_font =os.path.join(img_folder, 'FFF_Tusj.TTF')
+                self.draw_text("Parabens Player 1!!", self.title_font,45,GREEN,WIDTH/2, HEIGHT/2.5,align="center")
+                self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/5,align="center")
                 pg.display.flip()
                 self.wait_for_key()
                 self.game.playing=False
