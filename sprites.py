@@ -143,8 +143,10 @@ class Bomba(pg.sprite.Sprite):
                 if event.type == pg.QUIT:
                     waiting=False
                     quit()
-                if event.type == pg.KEYUP:
-                    waiting=False
+                if event.type == pg.KEYDOWN:
+                    if event.key==pg.K_ESCAPE:
+
+                        waiting=False
 
 
     def explosao(self,player1,player2,bombs):
@@ -159,7 +161,7 @@ class Bomba(pg.sprite.Sprite):
                     self.screen.fill(BLACK)
                     self.title_font =os.path.join(img_folder, 'FFF_Tusj.TTF')
                     self.draw_text("Parabens Player 2!!", self.title_font,50,RED,WIDTH/2, HEIGHT/2.5,align="center")
-                    self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/5,align="center")
+                    self.draw_text("Pressione 2 vezes Esc para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/5,align="center")
                     pg.display.flip()
                     self.wait_for_key()
                     self.game.playing=False
@@ -171,7 +173,7 @@ class Bomba(pg.sprite.Sprite):
                 self.screen.fill(BLACK)
                 self.title_font =os.path.join(img_folder, 'FFF_Tusj.TTF')
                 self.draw_text("Parabens Player 1!!", self.title_font,45,GREEN,WIDTH/2, HEIGHT/2.5,align="center")
-                self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/5,align="center")
+                self.draw_text("Pressione 2 vezes Esc Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/5,align="center")
                 pg.display.flip()
                 self.wait_for_key()
                 self.game.playing=False
