@@ -163,7 +163,7 @@ class Bomba(pg.sprite.Sprite):
                     self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
                     pg.display.flip()
                     self.wait_for_key()
-                    import game
+                    self.game.playing=False
                     
                     
 
@@ -175,7 +175,7 @@ class Bomba(pg.sprite.Sprite):
                 self.draw_text("Pressione Qualquer Tecla para Jogar de Novo", self.title_font,20, WHITE,WIDTH/2,HEIGHT*3/4,align="center")
                 pg.display.flip()
                 self.wait_for_key()
-                import game
+                self.game.playing=False
 
 class explosao1(pg.sprite.Sprite):
     

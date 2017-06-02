@@ -1,7 +1,11 @@
 import pygame
 def MenuInicial():
 	marcacao=2
-	pygame.init()
+	musica1=["Mighty Morphin' Power Rangers Theme [8 Bit Tribute to Power Rangers] - 8 Bit Universe.mp3"]
+	musica_jogo=random.choice(musica1)
+	pygame.mixer.init()
+	pygame.mixer.music.load(musica_jogo)
+	pygame.mixer.music.play()
 
 	black=(0,0,0)
 	white=(255,255,255)

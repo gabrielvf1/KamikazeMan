@@ -16,11 +16,12 @@ Instrucao()
 
 
 
-imagem_explosao=pg.image.load(os.path.join(img_folder,"Explosao_inicial.png")).convert_alpha()
+
 class Game:
     def __init__(self):
         pg.init()
         self.loop=True
+        self.playing=True
         # Musica
         musica=["Through The Fire and Flames .mp3 ", "_8 Bit _ Electro House_Lensko - Cetus.mp3","Battle Mode Music - Bomberman 64.mp3","Mortal Kombat 8-bit.mp3"]
         musica_jogo=random.choice(musica)
@@ -75,15 +76,19 @@ class Game:
 
 
     def run(self):
-        self.playing = True
-        while self.playing:
-            self.dt = self.clock.tick(FPS) / 1000
-            self.events()
-            self.update()
-            self.draw()
-            for bomb in self.bombs:
-                bomb.explosao(self.player1,self.player2,self.bombs)    
-            self.momento+=1
+        if self.playing==False:
+            self.loop=False
+            self.quit()
+        else:
+            self.playing = True
+            while self.playing:
+                self.dt = self.clock.tick(FPS) / 1000
+                self.events()
+                self.update()
+                self.draw()
+                for bomb in self.bombs:
+                    bomb.explosao(self.player1,self.player2,self.bombs)    
+                self.momento+=1
            
     
     def quit(self):

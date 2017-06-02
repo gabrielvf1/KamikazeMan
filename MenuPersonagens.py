@@ -4,12 +4,6 @@ import random
 def MenuPersonagem():
 	pygame.init()
 
-	musica1=["Mighty Morphin' Power Rangers Theme [8 Bit Tribute to Power Rangers] - 8 Bit Universe.mp3"]
-	musica_jogo=random.choice(musica1)
-	pygame.mixer.init()
-	pygame.mixer.music.load(musica_jogo)
-	pygame.mixer.music.play()
-
 	display_width=800
 	display_height=600
 	gameDisplay = pygame.display.set_mode((display_width,display_height))
